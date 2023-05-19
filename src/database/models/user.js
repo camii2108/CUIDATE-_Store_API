@@ -25,9 +25,6 @@ module.exports = (sequelize, dataTypes) => {
             type: dataTypes.STRING(100),
             allowNull: false,
         },
-        phone: {
-            type: dataTypes.INTEGER(14),
-        },
         avatar: {
             type: dataTypes.STRING(100),
         },
