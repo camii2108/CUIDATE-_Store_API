@@ -1,5 +1,11 @@
+const { generateToken } = require("../helpers/jwt.helper");
 const {
-    getUsers
+    getUsers,
+    //getuserbyid
+    //insertuser
+    updateUser,
+    deleteUser,
+    getUserByEmail,
 } = require("../services/user.service");
 
 module.exports = {
@@ -14,7 +20,6 @@ module.exports = {
                     detail: `/api/users/${id}`,
                 };
             });
-
             const RESPONSE = {
                 count: users.lenght,
                 users: usersResponse,
@@ -25,4 +30,23 @@ module.exports = {
             return res.status(500).json({ Error: error });
         }
     },
+    //getusersbyid
+    //fin getusersbyid
+
+    //createusers
+    //fincreateusers
+
+    login: async (req, res) => {
+        try {
+            const { email } = req.body;
+            const user = await getUserByEmail(email);
+            const token = generateToken(user);
+            
+            return res.status(200).json({token})
+        } catch (error) {
+            return res.status(500).json({ Error: "Token error " + error });
+        }
+    },
+    updateUser: async (req, res) => {},
+    deleteUser: async (req, res) => {},
 };
