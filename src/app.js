@@ -9,7 +9,7 @@ require('dotenv').config();
 const [ 
     userRouter, 
     productRouter, 
-    orderRouter, 
+    cartRouter, 
     categoryRouter
 ] = require("./routes");
 
@@ -26,7 +26,7 @@ app.use(cors()); // aca se pueden restringir las solicitades a una direccion esp
 // Routes
 app.use(`/api/users`, userRouter);
 app.use(`/api/products`, productRouter);
-app.use(`/api/orders`, orderRouter);
+app.use(`/api/carts`, cartRouter);
 app.use(`/api/categories`, categoryRouter);
 
 // Errors

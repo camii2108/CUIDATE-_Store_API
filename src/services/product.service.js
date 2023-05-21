@@ -33,4 +33,5 @@ const getProducts = async () => {
 
 module.exports = {
     getProducts,
+    getProductById
 }
