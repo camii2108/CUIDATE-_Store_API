@@ -21,7 +21,7 @@ const PORT = process.env.PORT || 3000;
 app.use(express.json());
 app.use(express.urlencoded({extended: false}));
 app.use(methodOverride("_method"));
-app.use(cors()); // aca se puedem restringir las solicitades a una direccion especifica, permitiendo solo las solicitudes de origen cruzado
+app.use(cors()); // aca se pueden restringir las solicitades a una direccion especifica, permitiendo solo las solicitudes de origen cruzado
 
 // Routes
 app.use(`/api/users`, userRouter);
