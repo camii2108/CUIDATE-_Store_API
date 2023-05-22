@@ -7,9 +7,16 @@ const {
 } = require("../controllers/product.controller");
 const verifyToken = require("../middlewares/jwt.middleware");
 
-router
-    .get("/", verifyToken, getProducts)
-    .get("/:id", getProductById)
-    .get("/paginated", verifyToken, getProductsPaginated); //Nueva ruta de paginacion
-    
+router.get("/", verifyToken, (req, res) => {
+  getProducts(req, res);
+});
+
+router.get("/:id", (req, res) => {
+  getProductById(req, res);
+});
+
+router.get("/paginated", verifyToken, (req, res) => {
+  getProductsPaginated(req, res);
+});
+
 module.exports = router;
