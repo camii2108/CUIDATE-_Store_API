@@ -1,6 +1,5 @@
 const { check, body } = require("express-validator");
-const bcrypt = require("bcryptjs");
-const db = require("../database/models");
+const bcrypt = require("bcrypt");
 const { getUserByEmail } = require("../services/user.service");
 
 const userLoginValidationRules = () => {
