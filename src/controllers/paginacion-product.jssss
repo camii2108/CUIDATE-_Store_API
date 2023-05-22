@@ -1,0 +1,109 @@
+const { getProducts, getProductById } = require("../services/product.service");
+const { axios } = require("@pipedream/platform");
+
+module.exports = {
+  getProducts: async (req, res) => {
+    try {
+      const products = await getProducts();
+      const productsResponse = products.map(
+        ({ id, name, description, images, subcategory }) => {
+          return {
+            id, 
+            name,
+            description,
+            images,
+            subcategory, 
+            detail: `/api/products/${id}`
+          };
+        }
+      );
+
+      const getProductCountByCategory = (products) => {
+        const categoryCount = {};
+
+        for (const product of products) {
+          const categoryName = product.subcategory.category.name;
+
+          if(categoryCount.hasOwnProperty(categoryName)){
+            categoryCount[categoryName]++;
+          }else{
+            categoryCount[categoryName] = 1;
+          }
+        }
+
+        return categoryCount;
+      }
+
+      const RESPONSE = {
+        count: products.length,
+        countByCategory: getProductCountByCategory(products),
+        products: productsResponse,
+      }
+
+      return res.status(200).json(RESPONSE);
+    } catch (error) {}
+  },
+  getProductsPaginated: async (req, res) => {
+    try {
+      const { page, pageSize } = req.query;
+      const products = await getProducts();
+      const totalProducts = products.length;
+      const totalPages = Math.ceil(totalProducts / pageSize);
+      const startIndex = (page - 1) * pageSize;
+      const endIndex = page * pageSize;
+      const paginatedProducts = products.slice(startIndex, endIndex);
+  
+      const productsResponse = paginatedProducts.map(
+        ({ id, name, description, images, subcategory }) => {
+          return {
+            id,
+            name,
+            description,
+            images,
+            subcategory,
+            detail: `/api/products/${id}`,
+          };
+        }
+      );
+  
+      const getProductCountByCategory = (products) => {
+        const categoryCount = {};
+  
+        for (const product of products) {
+          const categoryName = product.subcategory.category.name;
+  
+          if (categoryCount.hasOwnProperty(categoryName)) {
+            categoryCount[categoryName]++;
+          } else {
+            categoryCount[categoryName] = 1;
+          }
+        }
+  
+        return categoryCount;
+      };
+  
+      const RESPONSE = {
+        count: paginatedProducts.length,
+        countByCategory: getProductCountByCategory(paginatedProducts),
+        products: productsResponse,
+        totalProducts,
+        totalPages,
+        currentPage: page,
+        pageSize,
+      };
+  
+      return res.status(200).json(RESPONSE);
+    } catch (error) {
+      return res.status(500).json({ Error: error });
+    }
+  },
+  getProductById: async (req, res) => {
+    const PRODUCT_ID = req.params.id;
+    const product = await getProductById(PRODUCT_ID);
+
+    return res.status(200).json(product);
+  },
+  createProduct: async (req, res) => {},
+  updateProduct: async (req, res) => {},
+  deleteProduct: async (req, res) => {},
+};

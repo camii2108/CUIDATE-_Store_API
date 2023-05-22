@@ -1,5 +1,5 @@
 const {
-    getUsers
+    getUsers,
 } = require("../services/user.service");
 
 module.exports = {
@@ -14,7 +14,6 @@ module.exports = {
                     detail: `/api/users/${id}`,
                 };
             });
-
             const RESPONSE = {
                 count: users.lenght,
                 users: usersResponse,
