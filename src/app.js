@@ -9,7 +9,7 @@ require('dotenv').config();
 const [ 
     userRouter, 
     productRouter, 
-    orderRouter, 
+    cartRouter, 
     categoryRouter
 ] = require("./routes");
 
@@ -21,12 +21,12 @@ const PORT = process.env.PORT || 3000;
 app.use(express.json());
 app.use(express.urlencoded({extended: false}));
 app.use(methodOverride("_method"));
-app.use(cors()); // aca se puedem restringir las solicitades a una direccion especifica, permitiendo solo las solicitudes de origen cruzado
+app.use(cors()); // aca se pueden restringir las solicitades a una direccion especifica, permitiendo solo las solicitudes de origen cruzado
 
 // Routes
 app.use(`/api/users`, userRouter);
 app.use(`/api/products`, productRouter);
-app.use(`/api/orders`, orderRouter);
+app.use(`/api/carts`, cartRouter);
 app.use(`/api/categories`, categoryRouter);
 
 // Errors
@@ -35,4 +35,4 @@ app.use((err, req, res, next) => {
     res.status(500).json({ error: "Internal Server Error" });
 });
 
-app.listen(PORT, () => console.log(`Server listen in port ${PORT}`));
+app.listen(PORT, () => console.log(`Server listen in port http://localhost:${PORT}`));

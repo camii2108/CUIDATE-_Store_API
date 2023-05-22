@@ -8,7 +8,6 @@ const getUsers = async () => {
     throw new Error("Error al obtener usuarios");
   }
 };
-
 module.exports = {
   getUsers,
 };
