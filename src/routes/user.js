@@ -13,7 +13,6 @@ const validate = require("../validations/index.validator");
 const userLoginValidationRules = require("../validations/loginUser.validator");
 
 router
-<<<<<<< HEAD
   .get("/", getUsers)
   .get("/:id", getUserById)
   .post("/login", userLoginValidationRules(), validate, login)
@@ -22,7 +21,3 @@ router
   .delete("/:id", deleteUser);
 
 module.exports = router;
-=======
-    .get("/", getUsers)
-module.exports = router;
->>>>>>> 6bcb68b9c3ed1199d7d2d2018c3521eaef43e371
