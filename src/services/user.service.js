@@ -8,45 +8,6 @@ const getUsers = async () => {
     throw new Error("Error al obtener usuarios");
   }
 };
-/* getUsersById */
-/* Fin getUsersById */
-const getUserByEmail = async (email) => {
-  try {
-    return await User.findOne({
-      where: {
-        email,
-      },
-    });
-  } catch (error) {
-    console.error("Error while fetching user:", error);
-    throw new Error("Error fetching user");
-  }
-};
-
-/* Insert user */
-/* Fin Insert user */
-const updateUser = async (userData) => {
-  try {
-    return await User.update(userData, { where: { id: userData.id } });
-  } catch (error) {
-    console.error("Error while update user:", error);
-    throw new Error("Error update user");
-  }
-};
-const deleteUser = async (userId) => {
-  try {
-    return await User.destroy({ where: { id: userData.id } });
-  } catch (error) {
-    console.error("Error while delete user:", error);
-    throw new Error("Error delete user");
-  }
-};
-
 module.exports = {
   getUsers,
-  //getUsersById
-  getUserByEmail,
-  //insertUser
-  updateUser,
-  deleteUser
 };
