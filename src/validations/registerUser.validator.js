@@ -17,7 +17,7 @@ const userRegisterValidationRules = () => {
         return Promise.reject("This email is already registered");
       }
     }),
-    check("pass1")
+    check("pass")
       .notEmpty()
       .withMessage("Password is required")
       .isLength({
@@ -26,16 +26,12 @@ const userRegisterValidationRules = () => {
       })
       .withMessage("Password must be between 6 and 12 characters"),
     body("pass2")
-      .custom((value, { req }) => (value !== req.body.pass1 ? false : true))
+      .custom((value, { req }) => (value !== req.body.pass ? false : true))
       .withMessage("Passwords do not match"),
     check("terms")
       .isString("on")
       .withMessage("You must accept the bases and conditions"),
-    check("phone")
-      .optional()
-      .isMobilePhone()
-      .withMessage("Invalid phone number format"),
-    check("rol").isInt().withMessage("Invalid role"),
+    check("role").isInt().withMessage("Invalid role"),
     check("avatar").optional().isURL().withMessage("Invalid avatar URL"),
   ];
 };

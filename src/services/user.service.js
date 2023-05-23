@@ -12,11 +12,10 @@ const getUserById = async (id) => {
   try {
     return await User.findByPk(id);
   } catch (error) {
-    console.error("Error while fetching user:", error);
-    throw new Error("Error fetching user");
+    console.error("Error al buscar usuarios:", error);
+    throw new Error("Error al obtener usuarios");
   }
 };
-
 const getUserByEmail = async (email) => {
   try {
     return await User.findOne({
@@ -25,35 +24,32 @@ const getUserByEmail = async (email) => {
       },
     });
   } catch (error) {
-    console.error("Error while fetching user:", error);
-    throw new Error("Error fetching user");
+    console.error("Error al buscar usuarios:", error);
+    throw new Error("Error al obtener usuarios");
   }
 };
-
 const insertUser = async (userData) => {
   try {
     return await User.create(userData);
   } catch (error) {
-    console.error("Error while insert user:", error);
-    throw new Error("Error insert user");
+    console.error("Error durante la inserción del usuario:", error);
+    throw new Error("Error al insertar el usuario");
   }
 };
-
 const updateUser = async (userData) => {
   try {
     return await User.update(userData, { where: { id: userData.id } });
   } catch (error) {
-    console.error("Error while update user:", error);
-    throw new Error("Error update user");
+    console.error("Error durante el guardado de usuario:", error);
+    throw new Error("Error al actualizar el usuario");
   }
 };
-
 const deleteUser = async (userId) => {
   try {
     return await User.destroy({ where: { id: userData.id } });
   } catch (error) {
-    console.error("Error while delete user:", error);
-    throw new Error("Error delete user");
+    console.error("Error al eliminar el usuario:", error);
+    throw new Error("Error eliminando el usuario");
   }
 };
 

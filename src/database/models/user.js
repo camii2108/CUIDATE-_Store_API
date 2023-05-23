@@ -1,55 +1,60 @@
 module.exports = (sequelize, dataTypes) => {
     let alias = "User";
+
     let cols = {
-        id:{
-            type: dataTypes.INTEGER(11),
+        id: {
+            type: dataTypes.INTEGER(10),
             allowNull: false,
             autoIncrement: true,
             primaryKey: true,
         },
-        username: {
-            type: dataTypes.STRING(40),
-            allowNull: false,
-        },
         name: {
-            type: dataTypes.STRING(40),
-        },
-        lastName: {
-            type: dataTypes.STRING(40),
-        },
-        email: {
             type: dataTypes.STRING(50),
             allowNull: false,
         },
-        password: {
-            type: dataTypes.STRING(100),
+        last_name: {
+            type: dataTypes.STRING(50),
             allowNull: false,
+        },
+        email: {
+            type: dataTypes.STRING(60),
+            allowNull: false,
+        },
+        pass: {
+            type: dataTypes.STRING(70),
+            allowNull: false,
+        },
+        postal_code: {
+            type: dataTypes.INTEGER(10),
+            allowNull: false,
+        },
+        address: {
+            type: dataTypes.STRING(30),
+            allowNull: true,
+        },
+        role: {
+            type: dataTypes.INTEGER(2),
+            allowNull: false,
+            defaultValue: 0
         },
         avatar: {
             type: dataTypes.STRING(100),
         },
-        createdAt: {
-            type: dataTypes.DATE,
-        },
-        updatedAt: {
-            type: dataTypes.DATE,
-        },
-        role: {
-            type: dataTypes.STRING(14),
-            allowNull: false,
-        },
     }
+    
     let config = {
-        tableName: 'users',
-        createdAt: "createdAt",
-        updatedAt: "updatedAt",
-    }
-        const User = sequelize.define(alias, cols, config)
-        User.associate = function (models) {
-            User.hasOne(models.Address, {
-                as: 'address',
-                foreignKey: 'userId'
-            })
-        }
-        return User
-    }
+        tableName: "users",
+        createdAt: "created_at",
+        updatedAt: "updated_at",
+    };
+
+    const USER = sequelize.define(alias, cols, config);
+
+    USER.associate = (models) => {
+        USER.hasOne(models.Cart, {
+            as: "cart",
+            foreignKey: "userId",
+        })    
+    };
+    return USER;
+}

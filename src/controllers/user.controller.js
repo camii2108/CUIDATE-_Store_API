@@ -1,5 +1,10 @@
 const {
     getUsers,
+    getUserById,
+    insertUser,
+    updateUser,
+    deleteUser,
+    getUserByEmail,
 } = require("../services/user.service");
 
 module.exports = {
@@ -27,7 +32,7 @@ module.exports = {
     getUserById: async (req, res) => {
         try {
           const USER_ID = req.params.id;
-          const { id, name, last_name, email, phone, avatar } = await getUserById(
+          const { id, name, last_name, email, avatar } = await getUserById(
             USER_ID
           );
     
@@ -36,7 +41,6 @@ module.exports = {
             name,
             last_name,
             email,
-            phone,
             avatar,
           };
     
@@ -56,7 +60,7 @@ module.exports = {
             const SUCCESS_RESPONSE = "Se creo su usuario con exito";
             return res.status(201).json({ msg: SUCCESS_RESPONSE });
           } else {
-            const ERROR_RESPONSE = "Algo esta mal";
+            const ERROR_RESPONSE = "Erroneo";
             return res.status(400).json({ msg: ERROR_RESPONSE });
           }
         } catch (error) {
