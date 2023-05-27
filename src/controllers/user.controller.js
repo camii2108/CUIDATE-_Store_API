@@ -32,7 +32,7 @@ module.exports = {
     getUserById: async (req, res) => {
         try {
           const USER_ID = req.params.id;
-          const { id, name, last_name, email, avatar } = await getUserById(
+          const { id, name, last_name, email, postal_code, address, avatar } = await getUserById(
             USER_ID
           );
     
@@ -41,6 +41,8 @@ module.exports = {
             name,
             last_name,
             email,
+            postal_code,
+            address,
             avatar,
           };
     
@@ -81,4 +83,3 @@ module.exports = {
       updateUser: async (req, res) => {},
       deleteUser: async (req, res) => {},
     };
-    
