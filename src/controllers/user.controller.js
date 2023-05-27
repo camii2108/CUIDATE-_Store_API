@@ -1,3 +1,4 @@
+const { generateToken } = require("../helpers/jwt.helper");
 const {
     getUsers,
     getUserById,
@@ -6,6 +7,7 @@ const {
     deleteUser,
     getUserByEmail,
 } = require("../services/user.service");
+const bcrypt = require("bcrypt");
 
 module.exports = {
     getUsers: async (req, res) => {
@@ -32,7 +34,7 @@ module.exports = {
     getUserById: async (req, res) => {
         try {
           const USER_ID = req.params.id;
-          const { id, name, last_name, email, postal_code, address, avatar } = await getUserById(
+          const { id, name, last_name, email, phone, avatar } = await getUserById(
             USER_ID
           );
     
@@ -41,8 +43,7 @@ module.exports = {
             name,
             last_name,
             email,
-            postal_code,
-            address,
+            phone,
             avatar,
           };
     

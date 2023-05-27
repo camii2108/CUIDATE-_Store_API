@@ -31,14 +31,10 @@ const userRegisterValidationRules = () => {
     check("terms")
       .isString("on")
       .withMessage("You must accept the bases and conditions"),
-      check("postal_code")
+    check("phone")
       .optional()
-      .isNumeric()
-      .withMessage("Invalid postal code format"),
-    check("address")
-      .optional()
-      .isAlphanumeric()
-      .withMessage("Invalid address format"),
+      .isMobilePhone()
+      .withMessage("Invalid phone number format"),
     check("role").isInt().withMessage("Invalid role"),
     check("avatar").optional().isURL().withMessage("Invalid avatar URL"),
   ];

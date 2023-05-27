@@ -24,11 +24,8 @@ module.exports = (sequelize, dataTypes) => {
             type: dataTypes.STRING(70),
             allowNull: false,
         },
-        postal_code: {
-            type: dataTypes.STRING(10),
-        },
-        address: {
-            type: dataTypes.STRING(30),
+        phone: {
+            type: dataTypes.INTEGER(20),
         },
         role: {
             type: dataTypes.INTEGER(2),
