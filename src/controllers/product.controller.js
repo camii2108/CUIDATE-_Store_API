@@ -1,4 +1,6 @@
 const { getProducts, getProductById } = require("../services/product.service");
+const { Product } = require("../database/models");
+
 
 module.exports = {
   getProducts: async (req, res) => {
@@ -48,7 +50,28 @@ module.exports = {
 
     return res.status(200).json(product);
   },
-  createProduct: async (req, res) => {},
+  createProduct: async (req, res) => {
+    try {
+      const { name, price, subcategory_id } = req.body;
+  
+      if (!name || !price || !subcategory_id) {
+        return res.status(400).json({ error: "Faltan campos obligatorios" });
+      }
+  
+      const newProduct = await Product.create({
+        name,
+        price,
+        subcategory_id,
+      });
+  
+      return res.status(201).json(newProduct);
+    } catch (error) {
+      return res.status(500).json({ error: "Error al crear el producto" });
+    }
+  },
+  
+  
+  
   updateProduct: async (req, res) => {},
   deleteProduct: async (req, res) => {},
 };

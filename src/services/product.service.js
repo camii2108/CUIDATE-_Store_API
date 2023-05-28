@@ -30,8 +30,18 @@ const getProducts = async () => {
       throw new Error("Error while fetching product");
     }
   };
+  const createProduct = async (productData) => {
+    try {
+      const createdProduct = await Product.create(productData);
+      return createdProduct;
+    } catch (error) {
+      console.error("Error while creating product: ", error);
+      throw new Error("Error while creating product");
+    }
+  };
 
 module.exports = {
     getProducts,
-    getProductById
+    getProductById,
+    createProduct
 }
