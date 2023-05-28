@@ -2,14 +2,13 @@ const { body } = require("express-validator");
 
 const productValidationRules = () => {
   return [
-    body("name").notEmpty().withMessage("Name is required"),
-    body("price").notEmpty().withMessage("Price is required").isInt().withMessage("Invalid price"),
-    body("discount").optional().isInt().withMessage("Invalid discount"),
-    body("description").optional().isLength({ max: 800 }).withMessage("Description exceeds maximum length"),
-    body("subcategory_id").notEmpty().withMessage("Subcategory ID is required").isInt().withMessage("Invalid subcategory ID"),
+    body("name").notEmpty().withMessage("El nombre es obligatorio"),
+    body("price").notEmpty().withMessage("El precio es requerido").isInt().withMessage("Precio inválido"),
+    body("discount").optional().isInt().withMessage("Descuento inválido"),
+    body("description").optional().isLength({ max: 800 }).withMessage("La descripción supera la longitud máxima"),
+    body("subcategory_id").notEmpty().withMessage("El ID de la subcategoría es requerido").isInt().withMessage("ID de subcategoría inválido"),
   ];
 };
-
 
 module.exports = {
   productValidationRules,

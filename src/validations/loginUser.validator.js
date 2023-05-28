@@ -4,18 +4,17 @@ const { getUserByEmail } = require("../services/user.service");
 
 const userLoginValidationRules = () => {
   return [
-    check("email").isEmail().withMessage("Invalid email"),
-    check("pass").notEmpty().withMessage("Password is required"),
+    check("email").isEmail().withMessage("Email inválido"),
+    check("pass").notEmpty().withMessage("Contraseña es requerida"),
     body("custom").custom(async (value, { req }) => {
-      try {
-        const user = await getUserByEmail(value);
-
-        if (!bcrypt.compareSync(req.body.pass, user.dataValues.pass)) {
-          return Promise.reject();
-        }
-      } catch (error) {
-        return Promise.reject("Invalid Email or Password");
-      }
+      
+      return getUserByEmail(req.body.email)
+        .then((user) => {
+          if (!bcrypt.compareSync(req.body.pass, user.dataValues.pass)) {
+            return Promise.reject();
+          }
+        })
+        .catch(() => Promise.reject("Email o contraseña inválido"));
     }),
   ];
 };

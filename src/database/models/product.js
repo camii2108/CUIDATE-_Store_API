@@ -52,11 +52,6 @@ module.exports = (sequelize, dataTypes) => {
             as: "cartItems",
             foreignKey: "productId"
         });
-
-        /* PRODUCT.hasMany(models.ProductColor, {
-            as: "colors",
-            foreignKey: "product_id",
-        }); */
     }
 
     return PRODUCT;
