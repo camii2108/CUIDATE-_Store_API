@@ -5,9 +5,9 @@ const {
     getProductById,
     /* getProductsPaginated */
 } = require("../controllers/product.controller");
-const verifyToken = require("../middlewares/jwt.middleware");
+//const verifyToken = require("../middlewares/jwt.middleware");
 
-router.get("/", verifyToken, (req, res) => {
+router.get("/",  (req, res) => {
   getProducts(req, res);
 });
 
