@@ -39,9 +39,21 @@ const getProducts = async () => {
       throw new Error("Error while creating product");
     }
   };
+  const updateProduct = async (productId, productData) => {
+    try {
+      const updatedProduct = await Product.update(productData, {
+        where: { id: productId },
+      });
+      return updatedProduct;
+    } catch (error) {
+      console.error("Error while updating product: ", error);
+      throw new Error("Error while updating product");
+    }
+  };
 
 module.exports = {
     getProducts,
     getProductById,
-    createProduct
+    createProduct,
+    updateProduct,
 }
