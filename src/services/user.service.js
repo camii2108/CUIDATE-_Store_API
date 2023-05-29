@@ -46,7 +46,7 @@ const updateUser = async (userData) => {
 };
 const deleteUser = async (userId) => {
   try {
-    return await User.destroy({ where: { id: userData.id } });
+    return await User.destroy({ where: { id: userId } });
   } catch (error) {
     console.error("Error al eliminar el usuario:", error);
     throw new Error("Error eliminando el usuario");
