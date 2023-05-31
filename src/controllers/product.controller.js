@@ -82,6 +82,7 @@ module.exports = {
         return res.status(404).json({ error: "El producto no existe" });
       }
 
+      existingProduct.name = name;
       existingProduct.price = price;
       existingProduct.subcategory_id = subcategory_id;
 

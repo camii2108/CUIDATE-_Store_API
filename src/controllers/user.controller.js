@@ -84,7 +84,7 @@ module.exports = {
     updateUser: async (req, res) => {
         try {
             const USER_ID = req.params.id;
-            const { name, last_name, email, phone, avatar } = req.body;
+            const { name, last_name, phone, avatar } = req.body;
 
             const existingUser = await getUserById(USER_ID);
             if (!existingUser) {
@@ -95,7 +95,6 @@ module.exports = {
                 id: USER_ID,
                 name: name || existingUser.name,
                 last_name: last_name || existingUser.last_name,
-                email: email || existingUser.email,
                 phone: phone || existingUser.phone,
                 avatar: avatar || existingUser.avatar,
             };
