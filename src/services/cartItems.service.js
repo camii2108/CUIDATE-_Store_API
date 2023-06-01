@@ -18,7 +18,7 @@ const getCartItemById = async (id) => {
   }
 };
 
-const getCartItemsByOrder = async (cartId) => {
+const getCartItemsByCart = async (cartId) => {
   try {
     return await CartItem.findAll({
       where: {
@@ -83,7 +83,7 @@ const bulkDeleteCartItems = async (CartId) => {
 module.exports = {
   getCartsItems,
   getCartItemById,
-  getCartItemsByOrder,
+  getCartItemsByCart,
   insertCartItem,
   updateCartItem,
   deleteCartItem,
