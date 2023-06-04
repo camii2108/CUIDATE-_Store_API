@@ -1,6 +1,7 @@
 const jwt = require("jsonwebtoken");
 const process = require("process");
 const secret = process.env.JWT_SECRET;
+
 const generateToken = (user) => {
 
   try {
@@ -13,6 +14,7 @@ const generateToken = (user) => {
         user: USER_DATA,
         exp: Date.now() + 60 * 1000000,
     }
+
     const token = jwt.sign({payload}, secret);
 
     return token;
