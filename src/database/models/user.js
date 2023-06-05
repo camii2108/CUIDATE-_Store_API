@@ -38,6 +38,18 @@ module.exports = (sequelize, dataTypes) => {
         googleId: {
             type: dataTypes.STRING(100),
         },
+        address: {
+            type: dataTypes.STRING(100),
+        },
+        postal_code: {
+            type: dataTypes.STRING(10),
+        },
+        province: {
+            type: dataTypes.STRING(100),
+        },
+        city: {
+            type: dataTypes.STRING(100),
+        },
     }
     
     let config = {
